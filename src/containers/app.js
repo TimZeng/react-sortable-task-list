@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import SortableListComponent from '../components/sortableList';
 import { Button, InputGroup } from '../components/reusableComponents';
+import { fetchTasks } from '../actions/index';
 
-export default class App extends Component {
+class App extends Component {
   renderButtons() {
     return (
       <div style={styles.headerStyle}>
@@ -68,4 +71,8 @@ const styles = {
     fontSize: '200%',
     lineHeight: '46px'
   }
-}
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchTasks }, dispatch);
+
+export default connect(null, mapDispatchToProps)(App);
