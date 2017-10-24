@@ -45,6 +45,7 @@ body {
 }
 
 .content {
+  padding: 50px;
 }
 
 .light-text {
@@ -85,7 +86,4 @@ header h5 {
 /* Sortable List */
 /* ----------------------------------------------------------- */
 
-.sortable-list {
-  padding: 50px;
-}
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 
-import { Button, InputGroup } from './reusableComponents';
-
 const SortableItem = SortableElement(({value}) =>
   <div className="light-text" style={styles.listItemStyle}>
     <span>
@@ -38,28 +36,6 @@ export default class SortableListComponent extends Component {
   render() {
     return (
       <div className='sortable-list'>
-
-        <div style={styles.headerStyle}>
-          <span style={styles.titleStyle}>Tasks</span>
-          <div>
-            <Button
-              text='Add Task'
-              divStyle={{backgroundColor:'#8d9db0',color:'#fff'}}
-              onClick={() => console.log('trying to add task')}
-            />
-            <Button
-              text='Save'
-              divStyle={{backgroundColor:'#78da9f',color:'#fff', marginLeft:'8px'}}
-              onClick={() => console.log('trying to save tasks')}
-            />
-          </div>
-        </div>
-
-        <InputGroup
-          actionText='Add'
-          onClick={() => console.log('adding task')}
-          disabled={false}/>
-
         <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
       </div>
     );
@@ -67,17 +43,6 @@ export default class SortableListComponent extends Component {
 };
 
 const styles = {
-  headerStyle: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '30px'
-  },
-
-  titleStyle: {
-    fontSize: '200%',
-    lineHeight: '46px'
-  },
-
   listItemStyle: {
     backgroundColor: '#fff',
     padding: '10px',
