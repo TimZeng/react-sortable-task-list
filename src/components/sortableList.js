@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 
+import { Button, InputGroup } from './reusableComponents';
+
 const SortableItem = SortableElement(({value}) =>
   <div className="light-text" style={styles.listItemStyle}>
     <span>
@@ -39,11 +41,24 @@ export default class SortableListComponent extends Component {
 
         <div style={styles.headerStyle}>
           <span style={styles.titleStyle}>Tasks</span>
-          <div style={styles.buttonsStyle}>
-            <span style={{...styles.buttonStyle, backgroundColor:'#8d9db0'}}>Add Task</span>
-            <span style={{...styles.buttonStyle, backgroundColor:'#78da9f'}}>Save</span>
+          <div>
+            <Button
+              text='Add Task'
+              divStyle={{backgroundColor:'#8d9db0',color:'#fff'}}
+              onClick={() => console.log('trying to add task')}
+            />
+            <Button
+              text='Save'
+              divStyle={{backgroundColor:'#78da9f',color:'#fff', marginLeft:'8px'}}
+              onClick={() => console.log('trying to save tasks')}
+            />
           </div>
         </div>
+
+        <InputGroup
+          actionText='Add'
+          onClick={() => console.log('adding task')}
+          disabled={false}/>
 
         <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
       </div>
@@ -61,18 +76,6 @@ const styles = {
   titleStyle: {
     fontSize: '200%',
     lineHeight: '46px'
-  },
-
-  buttonsStyle: {
-    display: 'inline-block'
-  },
-
-  buttonStyle: {
-    marginLeft:'8px',
-    display:'inline-block',
-    padding: '8px 15px',
-    borderRadius: '5px',
-    color: '#fff'
   },
 
   listItemStyle: {
