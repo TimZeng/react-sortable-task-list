@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
+import SortableListComponent from './sortableList';
+
 export default class App extends Component {
   render() {
     return (
-      <div>Here is the app content</div>
-    )
+      <div className='container'>
+        <SortableListComponent />
+      </div>
+    );
   }
 };
