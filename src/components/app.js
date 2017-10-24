@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <header>
-          <h3>Sortable Task List - Tim Zeng - ReactJS & Redux</h3>
+          <h5>Sortable Task List - Tim Zeng - ReactJS & Redux</h5>
         </header>
         <div className='container content'>
           <SortableListComponent />
