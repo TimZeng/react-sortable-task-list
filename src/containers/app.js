@@ -9,7 +9,8 @@ import { fetchTasks, saveTasks, updateGlobal } from '../actions/index';
 
 class App extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    newTask: ''
   };
 
   componentWillMount() {
@@ -20,19 +21,21 @@ class App extends Component {
     const { tasks: curTasks } = this.props;
     if (nextTasks !== curTasks) {
       this.setState({ tasks: nextTasks });
+      this.props.updateGlobal({ addingTask: false, changeMade: false });
     }
   }
 
   renderButtons() {
-    const { global } = this.props;
+    const { global, updateGlobal } = this.props;
     return (
       <div style={styles.headerStyle}>
         <span style={styles.titleStyle}>Tasks</span>
         <div>
           <Button
-            text='Add Task'
+            text='New Task'
             divStyle={{backgroundColor:'#8d9db0',color:'#fff'}}
-            onClick={() => console.log('trying to add task')}
+            disabled={global.addingTask}
+            onClick={() => updateGlobal({ addingTask: true })}
           />
           <Button
             text='Save'
@@ -45,12 +48,37 @@ class App extends Component {
     )
   }
 
+  updateNewTask = newTask => {
+    this.setState({ newTask });
+  }
+
+  addNewTask = () => {
+    const { tasks, newTask } = this.state;
+    tasks.unshift(newTask);
+    this.setState({ tasks, newTask: '' });
+    this.props.updateGlobal({ addingTask: false, changeMade: true });
+  }
+
+  removeTask = index => {
+    const { tasks } = this.state;
+    tasks.splice(index, 1);
+    this.setState({ tasks });
+    this.props.updateGlobal({ changeMade: true });
+  }
+
   renderInputGroup() {
+    const { global } = this.props;
+    if ( !global.addingTask ) {
+      return null;
+    }
+
+    const { newTask } = this.state;
     return (
       <InputGroup
         actionText='Add'
-        onClick={() => console.log('adding task')}
-        disabled={false}
+        value={newTask}
+        onChange={this.updateNewTask}
+        onClick={this.addNewTask}
       />
     )
   }
@@ -59,14 +87,17 @@ class App extends Component {
     this.setState({
       tasks: arrayMove(this.state.tasks, oldIndex, newIndex),
     });
-    this.props.updateGlobal({ changeMade: true })
+    this.props.updateGlobal({ changeMade: true });
   }
 
   renderSortableList() {
     const { tasks } = this.state;
-    console.log(tasks);
     return (
-      <SortableListComponent items={tasks} onSortEnd={this.onSortEnd} />
+      <SortableListComponent
+        items={tasks}
+        onSortEnd={this.onSortEnd}
+        onDelete={this.removeTask}
+      />
     )
   }
 

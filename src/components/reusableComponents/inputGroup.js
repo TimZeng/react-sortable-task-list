@@ -1,12 +1,22 @@
 import React from 'react';
 
-export const InputGroup = ({ actionText = 'Submit', onChange, onClick, disabled = true }) => (
+export const InputGroup = ({ actionText = 'Submit', value, onChange, onClick }) => (
   <div
     className='input-group'
-    style={{...styles.inputGroupStyle, display: `${disabled?'none':'flex'}`}}
+    style={ styles.inputGroupStyle }
   >
-    <input style={styles.inputStyle} onChange={onChange} placeholder='Enter task name'/>
-    <div className='button' style={styles.buttonStyle} onClick={onClick}>{actionText}</div>
+    <input
+      style={ styles.inputStyle }
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      placeholder='Enter task name'
+      autoFocus
+    />
+    <div
+      className={`button ${value==='' ? 'disabled' : ''}`}
+      style={styles.buttonStyle}
+      onClick={ value==='' ? null : onClick }>{actionText}
+    </div>
   </div>
 );
 
