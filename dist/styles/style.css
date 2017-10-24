@@ -60,8 +60,13 @@ body {
   cursor: pointer;
 }
 
+.button.disabled:hover {
+  cursor: not-allowed;
+}
+
 .disabled {
-  pointer-events: none;
+  /*pointer-events: none;*/
+  opacity: 0.5;
 }
 
 .input-group input::placeholder {

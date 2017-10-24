@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { arrayMove } from 'react-sortable-hoc';
 
 import SortableListComponent from '../components/sortableList';
 import { Button, InputGroup } from '../components/reusableComponents';
-import { fetchTasks } from '../actions/index';
+import { fetchTasks, saveTasks, updateGlobal } from '../actions/index';
 
 class App extends Component {
+  state = {
+    tasks: []
+  };
+
+  componentWillMount() {
+    this.props.fetchTasks();
+  }
+
+  componentWillReceiveProps({ tasks: nextTasks }) {
+    const { tasks: curTasks } = this.props;
+    if (nextTasks !== curTasks) {
+      this.setState({ tasks: nextTasks });
+    }
+  }
+
   renderButtons() {
+    const { global } = this.props;
     return (
       <div style={styles.headerStyle}>
         <span style={styles.titleStyle}>Tasks</span>
@@ -20,7 +37,8 @@ class App extends Component {
           <Button
             text='Save'
             divStyle={{backgroundColor:'#78da9f',color:'#fff', marginLeft:'8px'}}
-            onClick={() => console.log('trying to save tasks')}
+            disabled={!global.changeMade}
+            onClick={() => this.props.saveTasks(this.state.tasks)}
           />
         </div>
       </div>
@@ -37,9 +55,18 @@ class App extends Component {
     )
   }
 
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState({
+      tasks: arrayMove(this.state.tasks, oldIndex, newIndex),
+    });
+    this.props.updateGlobal({ changeMade: true })
+  }
+
   renderSortableList() {
+    const { tasks } = this.state;
+    console.log(tasks);
     return (
-      <SortableListComponent />
+      <SortableListComponent items={tasks} onSortEnd={this.onSortEnd} />
     )
   }
 
@@ -73,6 +100,10 @@ const styles = {
   }
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchTasks }, dispatch);
+const mapStateToProps = ({ tasks, global }) => ({ tasks, global });
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchTasks, saveTasks, updateGlobal
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

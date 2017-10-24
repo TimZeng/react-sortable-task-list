@@ -3,8 +3,8 @@ import React from 'react';
 export const Button = ({ text, divStyle = {}, onClick, disabled = false }) => (
   <div
     className={`button ${disabled?'disabled':''}`}
-    style={{...styles.buttonStyle, ...divStyle}}
-    onClick={onClick}
+    style={{ ...styles.buttonStyle, ...divStyle }}
+    onClick={ disabled ? null : onClick }
   >
     { text }
   </div>

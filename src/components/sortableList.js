@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement(({value}) =>
   <div className="light-text" style={styles.listItemStyle}>
@@ -23,20 +23,16 @@ const SortableList = SortableContainer(({items}) => {
 });
 
 export default class SortableListComponent extends Component {
-  state = {
-    items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
-  };
-
-  onSortEnd = ({oldIndex, newIndex}) => {
-    this.setState({
-      items: arrayMove(this.state.items, oldIndex, newIndex),
-    });
-  };
+  // onSortEnd = ({oldIndex, newIndex}) => {
+  //   this.setState({
+  //     items: arrayMove(this.state.items, oldIndex, newIndex),
+  //   });
+  // };
 
   render() {
     return (
       <div className='sortable-list'>
-        <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
+        <SortableList items={this.props.items} onSortEnd={this.props.onSortEnd} />
       </div>
     );
   }
