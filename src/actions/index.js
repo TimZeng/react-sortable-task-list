@@ -3,7 +3,7 @@ import axios from 'axios';
 const URL = 'http://cfassignment.herokuapp.com/timzeng/tasks';
 
 export const FETCH_TASKS = 'FETCH_TASKS';
-export const SAVE_TASKS = 'SAVE_TASKS';
+export const UPLOAD_TASKS = 'UPLOAD_TASKS';
 export const UPDATE_GLOBAL = 'UPDATE_GLOBAL';
 export const RESET_ALERT = 'RESET_ALERT';
 
@@ -16,11 +16,11 @@ export const fetchTasks = () => {
   }
 };
 
-export const saveTasks = tasks => {
+export const uploadTasks = tasks => {
   const request = axios.post(URL, {tasks});
 
   return {
-    type: SAVE_TASKS,
+    type: UPLOAD_TASKS,
     payload: request
   }
 };

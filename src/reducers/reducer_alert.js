@@ -1,8 +1,8 @@
-import { FETCH_TASKS, SAVE_TASKS, RESET_ALERT } from '../actions/index';
+import { FETCH_TASKS, UPLOAD_TASKS, RESET_ALERT } from '../actions/index';
 
 export default (state = {}, action) => {
 
-  if ( action.type === SAVE_TASKS ) {
+  if ( action.type === UPLOAD_TASKS ) {
 
     const { status } = action.payload;
     return {
