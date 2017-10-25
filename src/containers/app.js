@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { arrayMove } from 'react-sortable-hoc';
 
 import SortableListComponent from '../components/sortableList';
-import { Button, InputGroup } from '../components/reusableComponents';
-import { fetchTasks, saveTasks, updateGlobal } from '../actions/index';
+import { Button, InputGroup, Alert } from '../components/reusableComponents';
+import { fetchTasks, saveTasks, updateGlobal, resetAlert } from '../actions/index';
 
 class App extends Component {
   state = {
@@ -25,6 +25,16 @@ class App extends Component {
     }
   }
 
+  renderAlert() {
+    const { alert, resetAlert } = this.props;
+    return (
+      <Alert
+        alert={ alert }
+        onClose={ resetAlert }
+      />
+    )
+  }
+
   renderButtons() {
     const { global, updateGlobal } = this.props;
     return (
@@ -32,14 +42,15 @@ class App extends Component {
         <span style={styles.titleStyle}>Tasks</span>
         <div>
           <Button
-            text='New Task'
-            divStyle={{backgroundColor:'#8d9db0',color:'#fff'}}
+            text='Add Task'
+            divStyle={{backgroundColor:'#8d9db0',color:'#fff',fontSize:'75%'}}
             disabled={global.addingTask}
-            onClick={() => updateGlobal({ addingTask: true })}
+            // onClick={() => updateGlobal({ addingTask: true })}
+            onClick={this.addNewTask}
           />
           <Button
             text='Save'
-            divStyle={{backgroundColor:'#78da9f',color:'#fff', marginLeft:'8px'}}
+            divStyle={{backgroundColor:'#78da9f',color:'#fff',fontSize:'75%',marginLeft:'8px'}}
             disabled={!global.changeMade}
             onClick={() => this.props.saveTasks(this.state.tasks)}
           />
@@ -52,11 +63,18 @@ class App extends Component {
     this.setState({ newTask });
   }
 
+  // addNewTask = () => {
+  //   const { tasks, newTask } = this.state;
+  //   tasks.unshift(newTask);
+  //   this.setState({ tasks, newTask: '' });
+  //   this.props.updateGlobal({ addingTask: false, changeMade: true });
+  // }
+
   addNewTask = () => {
-    const { tasks, newTask } = this.state;
-    tasks.unshift(newTask);
-    this.setState({ tasks, newTask: '' });
-    this.props.updateGlobal({ addingTask: false, changeMade: true });
+    const { tasks } = this.state;
+    tasks.unshift(null);
+    this.setState({ tasks });
+    // this.props.updateGlobal({ addingTask: false, changeMade: true });
   }
 
   removeTask = index => {
@@ -108,10 +126,14 @@ class App extends Component {
           <h5>Sortable Task List - Tim Zeng - ReactJS & Redux</h5>
         </header>
 
-        <div className='container content'>
-          { this.renderButtons() }
-          { this.renderInputGroup() }
-          { this.renderSortableList() }
+
+        <div className='container'>
+          { this.renderAlert() }
+          <div className='content'>
+            { this.renderButtons() }
+            { this.renderInputGroup() }
+            { this.renderSortableList() }
+          </div>
         </div>
       </div>
     );
@@ -126,15 +148,16 @@ const styles = {
   },
 
   titleStyle: {
-    fontSize: '200%',
-    lineHeight: '46px'
+    fontSize: '150%',
+    fontWeight: '700',
+    lineHeight: '38px'
   }
 };
 
-const mapStateToProps = ({ tasks, global }) => ({ tasks, global });
+const mapStateToProps = ({ tasks, global, alert }) => ({ tasks, global, alert });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchTasks, saveTasks, updateGlobal
+  fetchTasks, saveTasks, updateGlobal, resetAlert
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

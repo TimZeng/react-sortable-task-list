@@ -4,14 +4,16 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 const SortableItem = SortableElement(({itemIdex, value, onDelete}) => {
   return (
     <div className="light-text" style={styles.listItemStyle}>
-      <span>
-        <i className="fa fa-tasks" />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {value}
-      </span>
+      {
+        value === null
+        ? <input value={value} placeholder='Task name' autoFocus />
+        : <span>
+            {value}
+          </span>
+      }
       <i
         onClick={() => onDelete(itemIdex)}
-        style={{lineHeight: '30px'}}
+        style={{lineHeight: '24px'}}
         className="button fa fa-trash-o"
       />
     </div>
@@ -53,12 +55,15 @@ export default class SortableListComponent extends Component {
 const styles = {
   listItemStyle: {
     backgroundColor: '#fff',
-    padding: '10px',
+    padding: '10px 20px',
     marginBottom: '15px',
     boxShadow: '0px 2px 9px -1px rgba(145,140,145,0.3)',
     borderRadius: '3px',
-    // minHeight: '200px',
+    minHeight: '150px',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    fontWeight: '700',
+    fontSize: '80%',
+    letterSpacing: '1px'
   }
 }
