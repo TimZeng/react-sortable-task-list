@@ -3,14 +3,10 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement(({itemIdex, value, onDelete}) => {
   return (
-    <div className="light-text" style={styles.listItemStyle}>
-      {
-        value === null
-        ? <input value={value} placeholder='Task name' autoFocus />
-        : <span>
-            {value}
-          </span>
-      }
+    <div className="light-text sortable-list-item">
+      <span>
+        {value}
+      </span>
       <i
         onClick={() => onDelete(itemIdex)}
         style={{lineHeight: '24px'}}
