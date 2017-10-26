@@ -14,7 +14,7 @@ import {
   resetAlert
 } from '../actions/index';
 
-class App extends Component {
+export class App extends Component {
   componentWillMount() {
     this.props.fetchTasks();
   }
@@ -107,7 +107,7 @@ class App extends Component {
     }
 
     return (
-      <div className="light-text sortable-list-item">
+      <div className="light-text list-input">
         <input
           value={newTask||''}
           onChange={e => this.updateNewTask(e.target.value)}

@@ -7,6 +7,7 @@ export const Alert = ({ alert, onClose }) => {
 
   return (
     <div
+      className='alert'
       style={{
         ...styles.alertStyle,
         ...styles[`${alert.status===200 ? 'successStyle' : 'errorStyle'}`]

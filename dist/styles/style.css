@@ -82,7 +82,8 @@ header h5 {
 /* Sortable List */
 /* ----------------------------------------------------------- */
 
-.sortable-list-item {
+.sortable-list-item,
+.list-input {
   background-color: #fff;
   padding: 10px 20px;
   margin-bottom: 15px;
@@ -96,7 +97,7 @@ header h5 {
   letter-spacing: 1.5px;
 }
 
-.sortable-list-item input {
+.list-input input {
   color: var(--font-color-light);
   height: 24px;
   border: none;
@@ -106,6 +107,6 @@ header h5 {
   letter-spacing: 1.5px;
 }
 
-.sortable-list-item input::placeholder {
+.list-input input::placeholder {
   color: var(--border);
 }
