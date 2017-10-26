@@ -5,24 +5,19 @@ import { arrayMove } from 'react-sortable-hoc';
 
 import SortableListComponent from '../components/sortableList';
 import { Button, InputGroup, Alert } from '../components/reusableComponents';
-import { fetchTasks, uploadTasks, updateGlobal, resetAlert } from '../actions/index';
+import {
+  fetchTasks,
+  updateTasks,
+  uploadTasks,
+  addNewTask,
+  updateNewTask,
+  updateGlobal,
+  resetAlert
+} from '../actions/index';
 
 class App extends Component {
-  state = {
-    tasks: [],
-    newTask: {}
-  };
-
   componentWillMount() {
     this.props.fetchTasks();
-  }
-
-  componentWillReceiveProps({ tasks: nextTasks }) {
-    const { tasks: curTasks } = this.props;
-    if (nextTasks !== curTasks) {
-      this.setState({ tasks: nextTasks });
-      this.props.updateGlobal({ changeMade: false });
-    }
   }
 
   renderAlert() {
@@ -37,6 +32,7 @@ class App extends Component {
 
   renderButtons() {
     const { global, updateGlobal } = this.props;
+    const { changeMade, taskFetched } = this.props.global;
     return (
       <div style={styles.headerStyle}>
         <span style={styles.titleStyle}>Tasks</span>
@@ -49,7 +45,7 @@ class App extends Component {
           <Button
             text='Save'
             divStyle={{backgroundColor:'#78da9f',color:'#fff',fontSize:'75%',marginLeft:'8px'}}
-            disabled={!global.changeMade}
+            disabled={!changeMade || !taskFetched}
             onClick={this.saveTasks}
           />
         </div>
@@ -58,24 +54,18 @@ class App extends Component {
   }
 
   addNewTask = () => {
-    const { newTask, tasks } = this.state;
-    // if there is an empty new task, then don't add a new one
-    if ( !!newTask.new && !newTask.val ) {
+    const { newTask, tasks } = this.props;
+    if ( newTask === '' ) {
       return;
-
-    // if there is a valid new task, then add it to state.tasks
-    // before creating new one
-    } else if ( !!newTask.new && !!newTask.val ) {
-      return this.processNewTask(true);
+    } else if ( !!newTask ) {
+      this.processNewTask(true);
     }
 
-    // if there is currently no new task, create one
-    this.setState({ newTask: { new: true, val: null } });
+    this.props.addNewTask();
   }
 
-  updateNewTask = newTaskVal => {
-    this.setState({ newTask: {new: true, val: newTaskVal} });
-    this.props.updateGlobal({ changeMade: true });
+  updateNewTask = val => {
+    this.props.updateNewTask(val);
   }
 
   handleKeyPress = event => {
@@ -85,50 +75,41 @@ class App extends Component {
   }
 
   processNewTask = isAdding => {
-    const { newTask, tasks } = this.state;
-    if ( !newTask.val ) return;
+    const { newTask, tasks, updateTasks, updateNewTask } = this.props;
+    if ( !newTask ) return;
 
-    tasks.unshift(newTask.val);
-    const task = !!isAdding ? { new: true, val: null } : {};
-    this.setState({ tasks, newTask: task });
-    this.props.updateGlobal({ changeMade: true });
-  }
+    tasks.unshift(newTask);
+    updateTasks(tasks.slice());
 
-  resetNewTask = () => {
-    this.setState({ newIndex: {} });
+    const task = !!isAdding ? '' : null;
+    updateNewTask(task);
   }
 
   removeTask = index => {
-    const { tasks } = this.state;
+    const { tasks } = this.props;
     tasks.splice(index, 1);
-    this.updateTasks(tasks);
+    this.props.updateTasks(tasks.slice());
   }
 
   onSortEnd = ({oldIndex, newIndex}) => {
-    const tasks = arrayMove(this.state.tasks, oldIndex, newIndex);
-    this.updateTasks(tasks);
-  }
-
-  updateTasks = tasks => {
-    this.setState({ tasks });
-    this.props.updateGlobal({ changeMade: true });
+    const tasks = arrayMove(this.props.tasks, oldIndex, newIndex);
+    this.props.updateTasks(tasks);
   }
 
   saveTasks = () => {
-    const { newTask, tasks } = this.state;
+    const { newTask, tasks } = this.props;
     const { uploadTasks } = this.props;
 
-    if ( !!newTask.val ) {
-      tasks.unshift(newTask.val);
-      this.setState({ newTask: {} })
+    if ( !!newTask ) {
+      tasks.unshift(newTask);
     }
 
     uploadTasks(tasks);
   }
 
   renderInputGroup() {
-    const { newTask } = this.state;
-    if ( !newTask.new ) {
+    const { newTask } = this.props;
+    if ( newTask === null ) {
       return null;
     }
 
@@ -136,14 +117,14 @@ class App extends Component {
       <div className="light-text sortable-list-item">
         <input
           style={styles.inputStyle}
-          value={newTask.val||''}
+          value={newTask||''}
           onChange={e => this.updateNewTask(e.target.value)}
           onKeyPress={this.handleKeyPress}
           placeholder='New task'
           autoFocus
         />
         <i
-          onClick={this.resetNewTask}
+          onClick={() => this.updateNewTask(null)}
           style={{lineHeight: '24px'}}
           className="button fa fa-trash-o"
         />
@@ -151,8 +132,7 @@ class App extends Component {
     )
   }
 
-  renderSortableList() {
-    const { tasks, newTask } = this.state;
+  renderSortableList(tasks) {
     return (
       <SortableListComponent
         items={tasks}
@@ -163,10 +143,11 @@ class App extends Component {
   }
 
   render() {
+    const { tasks } = this.props;
     return (
       <div>
         <header>
-          <h5>Sortable Task List - Tim Zeng - ReactJS & Redux</h5>
+          <h5>Sortable Task List</h5>
         </header>
 
         <div className='container'>
@@ -174,7 +155,7 @@ class App extends Component {
           <div className='content'>
             { this.renderButtons() }
             { this.renderInputGroup() }
-            { this.renderSortableList() }
+            { this.renderSortableList(tasks) }
           </div>
         </div>
       </div>
@@ -196,10 +177,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ tasks, global, alert }) => ({ tasks, global, alert });
+const mapStateToProps = ({ tasks, newTask, global, alert }) =>
+({ tasks, newTask, global, alert });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchTasks, uploadTasks, updateGlobal, resetAlert
+  fetchTasks, updateTasks, uploadTasks, addNewTask, updateNewTask, updateGlobal, resetAlert
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
