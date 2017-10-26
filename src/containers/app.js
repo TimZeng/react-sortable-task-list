@@ -32,13 +32,13 @@ export class App extends Component {
         <div>
           <Button
             text='Add Task'
-            divStyle={{backgroundColor:'#8d9db0',color:'#fff',fontSize:'75%'}}
+            divStyle={{...styles.buttonStyle, backgroundColor:'#8d9db0'}}
             disabled={newTask === ''}
             onClick={this.addNewTask}
           />
           <Button
             text='Save'
-            divStyle={{backgroundColor:'#78da9f',color:'#fff',fontSize:'75%',marginLeft:'8px'}}
+            divStyle={{...styles.buttonStyle, backgroundColor:'#78da9f', marginLeft:'8px'}}
             disabled={!changeMade || !taskFetched}
             onClick={this.saveTasks}
           />
@@ -166,6 +166,11 @@ const styles = {
     fontSize: '150%',
     fontWeight: '700',
     lineHeight: '38px'
+  },
+
+  buttonStyle: {
+    color:'#fff',
+    fontSize:'75%'
   }
 };
 

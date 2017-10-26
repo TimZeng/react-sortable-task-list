@@ -29,9 +29,9 @@
 
 html,
 body {
-  background-color: var(--background) !important;
+  background-color: var(--background);
   color: var(--font-color);
-  font-family: 'Lato', 'Arial', sans-serif !important;
+  font-family: 'Lato', 'Arial', sans-serif;
   font-weight: 400;
   font-size: 20px;
   text-rendering: optimizeLegibility;
@@ -41,7 +41,7 @@ body {
 }
 
 .container {
-  max-width: 800px !important;
+  max-width: 800px;
 }
 
 .content {
@@ -49,7 +49,7 @@ body {
 }
 
 .light-text {
-  color: var(--font-color-light) !important;
+  color: var(--font-color-light);
 }
 
 /* ----------------------------------------------------------- */
