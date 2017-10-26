@@ -1,27 +1,24 @@
-import { FETCH_TASKS, UPLOAD_TASKS, RESET_ALERT } from '../actions/index';
+import {
+  FETCH_TASKS_FAILURE, UPLOAD_TASKS_SUCCESS, UPLOAD_TASKS_FAILURE, RESET_ALERT
+} from '../actions/index';
 
 export default (state = {}, action) => {
 
-  if ( action.type === UPLOAD_TASKS ) {
+  switch ( action.type ) {
 
-    const { status } = action.payload;
-    return {
-      status,
-      message: `${status === 200 ? 'Tasks saved successfully!' : 'There is an issue saving your tasks, please try again.'}`
-    }
+    case UPLOAD_TASKS_SUCCESS:
+      return { status: 200, message: 'Tasks saved successfully.' };
 
-  } else if ( action.type === FETCH_TASKS ) {
+    case UPLOAD_TASKS_FAILURE:
+      return { status: 400, message: 'There is an issue saving your tasks, please try again.' };
 
-    const { status } = action.payload;
-    if ( status !== 200 ) {
-      return { status, message: 'There is an issue loading your tasks, please try again.' };
-    }
+    case FETCH_TASKS_FAILURE:
+      return { status: 400, message: 'There is an issue loading your tasks, please try again.' };
 
-  } else if ( action.type === RESET_ALERT ) {
-
-    return {};
+    case RESET_ALERT:
+      return {};
 
   }
 
-  return state
+  return {};
 }

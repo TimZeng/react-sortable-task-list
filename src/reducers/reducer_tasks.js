@@ -1,12 +1,18 @@
-import { FETCH_TASKS, UPDATE_TASKS, UPLOAD_TASKS } from '../actions/index';
+import { FETCH_TASKS_SUCCESS, UPDATE_TASKS, UPLOAD_TASKS_SUCCESS } from '../actions/index';
 
 export default (state = [], action) => {
-  if ( action.type === FETCH_TASKS && action.payload.status === 200 ) {
-    return action.payload.data.tasks;
-  } else if ( action.type === UPLOAD_TASKS && action.payload.status === 200 ) {
-    return action.payload.data.tasks;
-  } else if ( action.type === UPDATE_TASKS ) {
-    return action.payload;
+
+  switch ( action.type ) {
+
+    case FETCH_TASKS_SUCCESS:
+      return action.payload;
+
+    case UPLOAD_TASKS_SUCCESS:
+      return action.payload;
+
+    case UPDATE_TASKS:
+      return action.payload;
+
   }
 
   return state;

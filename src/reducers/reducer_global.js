@@ -1,21 +1,22 @@
-import { UPDATE_GLOBAL, UPLOAD_TASKS, UPDATE_TASKS, UPDATE_NEW_TASK, FETCH_TASKS } from '../actions/index';
+import {
+  FETCH_TASKS_SUCCESS, UPLOAD_TASKS_SUCCESS, UPDATE_TASKS, UPDATE_NEW_TASK
+} from '../actions/index';
 
 export default (state = {}, action) => {
-  if ( action.type === UPDATE_GLOBAL ) {
 
-    return { ...state, ...action.payload };
+  switch ( action.type ) {
 
-  } else if ( action.type === UPLOAD_TASKS && action.payload.status === 200 ) {
+    case FETCH_TASKS_SUCCESS:
+      return { ...state, taskFetched: true };
 
-    return { ...state, changeMade: false };
+    case UPLOAD_TASKS_SUCCESS:
+      return { ...state, changeMade: false };
 
-  } else if ( action.type === UPDATE_TASKS || action.type === UPDATE_NEW_TASK ) {
+    case UPDATE_TASKS:
+      return { ...state, changeMade: true };
 
-    return { ...state, changeMade: true };
-
-  } else if ( action.type === FETCH_TASKS && action.payload.status === 200 ) {
-
-    return { ...state, taskFetched: true };
+    case UPDATE_NEW_TASK:
+      return { ...state, changeMade: true };
 
   }
 

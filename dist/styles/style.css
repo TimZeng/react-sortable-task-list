@@ -10,14 +10,13 @@
 }
 
 /* ----------------------------------------------------------- */
-/* Basic Setup */
+/* General Setup */
 /* ----------------------------------------------------------- */
 
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *:focus {
@@ -65,20 +64,12 @@ body {
   cursor: not-allowed;
 }
 
-.disabled {
-  opacity: 0.5;
-}
-
-.input-group input::placeholder {
-  color: var(--font-color-light);
-}
-
 /* ----------------------------------------------------------- */
 /* Header */
 /* ----------------------------------------------------------- */
 
 header {
-  background: linear-gradient(135deg,#2e3e51,#212b3a);
+  background: linear-gradient(135deg, #2e3e51, #212b3a);
   padding: 15px 50px;
   color: white;
 }
@@ -102,7 +93,7 @@ header h5 {
   justify-content: space-between;
   font-weight: 700;
   font-size: 80%;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .sortable-list-item input {
@@ -112,7 +103,7 @@ header h5 {
   border-bottom: 1px solid var(--border);
   width: 90%;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .sortable-list-item input::placeholder {

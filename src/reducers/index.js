@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import TasksReducer from './reducer_tasks';
 import NewTaskReducer from './reducer_newTask';
 import GlobalReducer from './reducer_global';

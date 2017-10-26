@@ -26,7 +26,7 @@ const styles = {
     maxWidth: '80%',
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '3px 15px',
+    padding: '8px 15px',
     fontSize: '70%',
     borderRadius: '3px',
     zIndex: '2'

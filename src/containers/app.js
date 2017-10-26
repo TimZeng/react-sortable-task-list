@@ -4,14 +4,13 @@ import { bindActionCreators } from 'redux';
 import { arrayMove } from 'react-sortable-hoc';
 
 import SortableListComponent from '../components/sortableList';
-import { Button, InputGroup, Alert } from '../components/reusableComponents';
+import { Button, Alert } from '../components/reusableComponents';
 import {
   fetchTasks,
   updateTasks,
   uploadTasks,
   addNewTask,
   updateNewTask,
-  updateGlobal,
   resetAlert
 } from '../actions/index';
 
@@ -22,17 +21,11 @@ class App extends Component {
 
   renderAlert() {
     const { alert, resetAlert } = this.props;
-    return (
-      <Alert
-        alert={ alert }
-        onClose={ resetAlert }
-      />
-    )
+    return <Alert alert={ alert } onClose={ resetAlert } />;
   }
 
   renderButtons() {
-    const { global, updateGlobal } = this.props;
-    const { changeMade, taskFetched } = this.props.global;
+    const { global: { changeMade, taskFetched }, newTask } = this.props;
     return (
       <div style={styles.headerStyle}>
         <span style={styles.titleStyle}>Tasks</span>
@@ -40,6 +33,7 @@ class App extends Component {
           <Button
             text='Add Task'
             divStyle={{backgroundColor:'#8d9db0',color:'#fff',fontSize:'75%'}}
+            disabled={newTask === ''}
             onClick={this.addNewTask}
           />
           <Button
@@ -55,6 +49,7 @@ class App extends Component {
 
   addNewTask = () => {
     const { newTask, tasks } = this.props;
+
     if ( newTask === '' ) {
       return;
     } else if ( !!newTask ) {
@@ -64,9 +59,7 @@ class App extends Component {
     this.props.addNewTask();
   }
 
-  updateNewTask = val => {
-    this.props.updateNewTask(val);
-  }
+  updateNewTask = val => this.props.updateNewTask(val);
 
   handleKeyPress = event => {
     if ( event.key === 'Enter' ) {
@@ -86,9 +79,9 @@ class App extends Component {
   }
 
   removeTask = index => {
-    const { tasks } = this.props;
+    const { tasks, updateTasks } = this.props;
     tasks.splice(index, 1);
-    this.props.updateTasks(tasks.slice());
+    updateTasks(tasks.slice());
   }
 
   onSortEnd = ({oldIndex, newIndex}) => {
@@ -97,8 +90,7 @@ class App extends Component {
   }
 
   saveTasks = () => {
-    const { newTask, tasks } = this.props;
-    const { uploadTasks } = this.props;
+    const { newTask, tasks, uploadTasks } = this.props;
 
     if ( !!newTask ) {
       tasks.unshift(newTask);
@@ -107,8 +99,9 @@ class App extends Component {
     uploadTasks(tasks);
   }
 
-  renderInputGroup() {
+  renderInput() {
     const { newTask } = this.props;
+
     if ( newTask === null ) {
       return null;
     }
@@ -116,7 +109,6 @@ class App extends Component {
     return (
       <div className="light-text sortable-list-item">
         <input
-          style={styles.inputStyle}
           value={newTask||''}
           onChange={e => this.updateNewTask(e.target.value)}
           onKeyPress={this.handleKeyPress}
@@ -132,7 +124,8 @@ class App extends Component {
     )
   }
 
-  renderSortableList(tasks) {
+  renderSortableList() {
+    const { tasks } = this.props;
     return (
       <SortableListComponent
         items={tasks}
@@ -143,7 +136,6 @@ class App extends Component {
   }
 
   render() {
-    const { tasks } = this.props;
     return (
       <div>
         <header>
@@ -154,8 +146,8 @@ class App extends Component {
           { this.renderAlert() }
           <div className='content'>
             { this.renderButtons() }
-            { this.renderInputGroup() }
-            { this.renderSortableList(tasks) }
+            { this.renderInput() }
+            { this.renderSortableList() }
           </div>
         </div>
       </div>
@@ -181,7 +173,7 @@ const mapStateToProps = ({ tasks, newTask, global, alert }) =>
 ({ tasks, newTask, global, alert });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchTasks, updateTasks, uploadTasks, addNewTask, updateNewTask, updateGlobal, resetAlert
+  fetchTasks, updateTasks, uploadTasks, addNewTask, updateNewTask, resetAlert
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
