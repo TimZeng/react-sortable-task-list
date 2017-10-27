@@ -1,51 +1,57 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-15';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
+import toJson from 'enzyme-to-json';
 
 import { App } from '../src/containers/app';
 
-describe('>>>APP --- Dynamic Render REACT COMPONENTS',()=>{
+describe('App component should render dynamically', () => {
   let wrapper, taskLen, alertCount, newTaskCount
   const fetchTasks = () => {};
   const global = { changeMade: false, tasksFetched: true };
-  const newTasks = ['new task for testing','',null];
-  const tasks = ['task1','task2','task3','task4','task5','task6','task7','task8','task9','task10'];
-  const alerts = [{}, {status: 400, message: 'error'}, {status: 200, message: 'success'}];
+  const newTask = 'new task for testing';
+  const tasks = ['task1','task2','task3'];
+  const successAlert = {status: 200, message: 'success'};
 
-  beforeEach(()=>{
-    const randomTasks = tasks.slice(0, Math.floor(Math.random() * 10));
-    const randomAlert = alerts[Math.floor(Math.random() * 3)];
-    const randomNew = newTasks[Math.floor(Math.random() * 3)];
+  it('should render newTasks when it exist', () => {
+    const props = {fetchTasks, global, newTask, alert: {}, tasks };
+    const component = shallow(<App {...props} />);
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
+    expect(component.find('input').length).toBe(1);
+    expect(component.find('input').props().value).toEqual(newTask);
+  })
 
-    taskLen = randomTasks.length;
-    alertCount = !!randomAlert.message ? 1 : 0;
-    newTaskCount = randomNew === null ? 0 : 1;
+  it('should NOT render newTasks when value is null', () => {
+    const props = {fetchTasks, global, newTask: null, alert: {}, tasks };
+    const component = shallow(<App {...props} />);
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
+    expect(component.find('input').length).toBe(0);
+  })
 
-    wrapper = mount(<App newTask={randomNew} tasks={randomTasks} fetchTasks={fetchTasks} global={global} alert={randomAlert} />);
-  });
+  it('should render alert when it exist', () => {
+    const props = {fetchTasks, global, newTask: null, alert: successAlert, tasks };
+    const component = shallow(<App {...props} />);
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
+  })
 
-  it('should render the DUMB component', () => {
-    expect(wrapper.length).toEqual(1)
-  });
+  it('should NOT render list item when tasks is empty', () => {
+    const props = {fetchTasks, global, newTask: null, alert: {}, tasks:[] };
+    const component = shallow(<App {...props} />);
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
+  })
 
-  it('>>> should contain subcomponents: alert', () => {
-    const alertCount = wrapper.find('.alert').length;
-    expect(alertCount).toBe(alertCount);
-  });
-
-  it('>>> should contain subcomponents: buttons', () => {
-    expect(wrapper.find('.button').length).toBe(2 + taskLen + alertCount + newTaskCount);
-  });
-
-  it('>>> should contain subcomponents: newTask', () => {
-    const inputCount = wrapper.find('input[placeholder="New task"]').length;
-    expect(inputCount).toBe(newTaskCount);
-  });
-
-  it('>>> should contain subcomponents: list items', () => {
-    const listItemCount = wrapper.find('.sortable-list-item').length;
-    expect(listItemCount).toBe(taskLen);
-  });
+  it('should enable saving when list fetched and change made', () => {
+    const props = {fetchTasks, global: { changeMade: true, tasksFetched: true }, newTask: null, alert: {}, tasks:[] };
+    const component = shallow(<App {...props} />);
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
+  })
 
 });
+
+

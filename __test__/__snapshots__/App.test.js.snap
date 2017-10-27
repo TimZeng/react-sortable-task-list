@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render dynamically should NOT render list item when tasks is empty 1`] = `
+<div>
+  <header>
+    <h5>
+      Sortable Task List
+    </h5>
+  </header>
+  <div
+    className="container"
+  >
+    <Alert
+      alert={Object {}}
+    />
+    <div
+      className="content"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "marginBottom": "30px",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "fontSize": "150%",
+              "fontWeight": "700",
+              "lineHeight": "38px",
+            }
+          }
+        >
+          Tasks
+        </span>
+        <div>
+          <Button
+            disabled={false}
+            divStyle={
+              Object {
+                "backgroundColor": "#8d9db0",
+                "color": "#fff",
+                "fontSize": "75%",
+              }
+            }
+            onClick={[Function]}
+            text="Add Task"
+          />
+          <Button
+            disabled={true}
+            divStyle={
+              Object {
+                "backgroundColor": "#78da9f",
+                "color": "#fff",
+                "fontSize": "75%",
+                "marginLeft": "8px",
+              }
+            }
+            onClick={[Function]}
+            text="Save"
+          />
+        </div>
+      </div>
+      <SortableListComponent
+        items={Array []}
+        onDelete={[Function]}
+        onSortEnd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App component should render dynamically should NOT render newTasks when value is null 1`] = `
+<div>
+  <header>
+    <h5>
+      Sortable Task List
+    </h5>
+  </header>
+  <div
+    className="container"
+  >
+    <Alert
+      alert={Object {}}
+    />
+    <div
+      className="content"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "marginBottom": "30px",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "fontSize": "150%",
+              "fontWeight": "700",
+              "lineHeight": "38px",
+            }
+          }
+        >
+          Tasks
+        </span>
+        <div>
+          <Button
+            disabled={false}
+            divStyle={
+              Object {
+                "backgroundColor": "#8d9db0",
+                "color": "#fff",
+                "fontSize": "75%",
+              }
+            }
+            onClick={[Function]}
+            text="Add Task"
+          />
+          <Button
+            disabled={true}
+            divStyle={
+              Object {
+                "backgroundColor": "#78da9f",
+                "color": "#fff",
+                "fontSize": "75%",
+                "marginLeft": "8px",
+              }
+            }
+            onClick={[Function]}
+            text="Save"
+          />
+        </div>
+      </div>
+      <SortableListComponent
+        items={
+          Array [
+            "task1",
+            "task2",
+            "task3",
+          ]
+        }
+        onDelete={[Function]}
+        onSortEnd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App component should render dynamically should enable saving when list fetched and change made 1`] = `
+<div>
+  <header>
+    <h5>
+      Sortable Task List
+    </h5>
+  </header>
+  <div
+    className="container"
+  >
+    <Alert
+      alert={Object {}}
+    />
+    <div
+      className="content"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "marginBottom": "30px",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "fontSize": "150%",
+              "fontWeight": "700",
+              "lineHeight": "38px",
+            }
+          }
+        >
+          Tasks
+        </span>
+        <div>
+          <Button
+            disabled={false}
+            divStyle={
+              Object {
+                "backgroundColor": "#8d9db0",
+                "color": "#fff",
+                "fontSize": "75%",
+              }
+            }
+            onClick={[Function]}
+            text="Add Task"
+          />
+          <Button
+            disabled={true}
+            divStyle={
+              Object {
+                "backgroundColor": "#78da9f",
+                "color": "#fff",
+                "fontSize": "75%",
+                "marginLeft": "8px",
+              }
+            }
+            onClick={[Function]}
+            text="Save"
+          />
+        </div>
+      </div>
+      <SortableListComponent
+        items={Array []}
+        onDelete={[Function]}
+        onSortEnd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App component should render dynamically should render alert when it exist 1`] = `
+<div>
+  <header>
+    <h5>
+      Sortable Task List
+    </h5>
+  </header>
+  <div
+    className="container"
+  >
+    <Alert
+      alert={
+        Object {
+          "message": "success",
+          "status": 200,
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "marginBottom": "30px",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "fontSize": "150%",
+              "fontWeight": "700",
+              "lineHeight": "38px",
+            }
+          }
+        >
+          Tasks
+        </span>
+        <div>
+          <Button
+            disabled={false}
+            divStyle={
+              Object {
+                "backgroundColor": "#8d9db0",
+                "color": "#fff",
+                "fontSize": "75%",
+              }
+            }
+            onClick={[Function]}
+            text="Add Task"
+          />
+          <Button
+            disabled={true}
+            divStyle={
+              Object {
+                "backgroundColor": "#78da9f",
+                "color": "#fff",
+                "fontSize": "75%",
+                "marginLeft": "8px",
+              }
+            }
+            onClick={[Function]}
+            text="Save"
+          />
+        </div>
+      </div>
+      <SortableListComponent
+        items={
+          Array [
+            "task1",
+            "task2",
+            "task3",
+          ]
+        }
+        onDelete={[Function]}
+        onSortEnd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App component should render dynamically should render newTasks when it exist 1`] = `
+<div>
+  <header>
+    <h5>
+      Sortable Task List
+    </h5>
+  </header>
+  <div
+    className="container"
+  >
+    <Alert
+      alert={Object {}}
+    />
+    <div
+      className="content"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "marginBottom": "30px",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "fontSize": "150%",
+              "fontWeight": "700",
+              "lineHeight": "38px",
+            }
+          }
+        >
+          Tasks
+        </span>
+        <div>
+          <Button
+            disabled={false}
+            divStyle={
+              Object {
+                "backgroundColor": "#8d9db0",
+                "color": "#fff",
+                "fontSize": "75%",
+              }
+            }
+            onClick={[Function]}
+            text="Add Task"
+          />
+          <Button
+            disabled={true}
+            divStyle={
+              Object {
+                "backgroundColor": "#78da9f",
+                "color": "#fff",
+                "fontSize": "75%",
+                "marginLeft": "8px",
+              }
+            }
+            onClick={[Function]}
+            text="Save"
+          />
+        </div>
+      </div>
+      <div
+        className="light-text list-input"
+      >
+        <input
+          autoFocus={true}
+          onChange={[Function]}
+          onKeyPress={[Function]}
+          placeholder="New task"
+          value="new task for testing"
+        />
+        <i
+          className="button fa fa-trash-o"
+          onClick={[Function]}
+          style={
+            Object {
+              "lineHeight": "24px",
+            }
+          }
+        />
+      </div>
+      <SortableListComponent
+        items={
+          Array [
+            "task1",
+            "task2",
+            "task3",
+          ]
+        }
+        onDelete={[Function]}
+        onSortEnd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
