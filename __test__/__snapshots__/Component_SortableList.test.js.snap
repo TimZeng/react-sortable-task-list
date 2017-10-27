@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortableListComponent component should render dynamically should render 3 list items 1`] = `
+<SortableListComponent
+  items={
+    Array [
+      "task1",
+      "task2",
+      "task3",
+    ]
+  }
+>
+  <div
+    className="sortable-list"
+  >
+    <sortableList
+      axis="y"
+      distance={0}
+      getHelperDimensions={[Function]}
+      hideSortableGhost={true}
+      items={
+        Array [
+          "task1",
+          "task2",
+          "task3",
+        ]
+      }
+      lockOffset="50%"
+      lockToContainerEdges={false}
+      onDelete={undefined}
+      onSortEnd={undefined}
+      pressDelay={0}
+      pressThreshold={5}
+      shouldCancelStart={[Function]}
+      transitionDuration={300}
+      useWindowAsScrollContainer={false}
+    >
+      <Component
+        items={
+          Array [
+            "task1",
+            "task2",
+            "task3",
+          ]
+        }
+        onDelete={undefined}
+      >
+        <div>
+          <sortableElement
+            collection={0}
+            index={0}
+            key="item-0"
+            onDelete={undefined}
+            value="task1"
+          >
+            <Component
+              onDelete={undefined}
+              value="task1"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task1
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={1}
+            key="item-1"
+            onDelete={undefined}
+            value="task2"
+          >
+            <Component
+              onDelete={undefined}
+              value="task2"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task2
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={2}
+            key="item-2"
+            onDelete={undefined}
+            value="task3"
+          >
+            <Component
+              onDelete={undefined}
+              value="task3"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task3
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+        </div>
+      </Component>
+    </sortableList>
+  </div>
+</SortableListComponent>
+`;
+
+exports[`SortableListComponent component should render dynamically should render 5 list items 1`] = `
+<SortableListComponent
+  items={
+    Array [
+      "task1",
+      "task2",
+      "task3",
+      "task4",
+      "task5",
+    ]
+  }
+>
+  <div
+    className="sortable-list"
+  >
+    <sortableList
+      axis="y"
+      distance={0}
+      getHelperDimensions={[Function]}
+      hideSortableGhost={true}
+      items={
+        Array [
+          "task1",
+          "task2",
+          "task3",
+          "task4",
+          "task5",
+        ]
+      }
+      lockOffset="50%"
+      lockToContainerEdges={false}
+      onDelete={undefined}
+      onSortEnd={undefined}
+      pressDelay={0}
+      pressThreshold={5}
+      shouldCancelStart={[Function]}
+      transitionDuration={300}
+      useWindowAsScrollContainer={false}
+    >
+      <Component
+        items={
+          Array [
+            "task1",
+            "task2",
+            "task3",
+            "task4",
+            "task5",
+          ]
+        }
+        onDelete={undefined}
+      >
+        <div>
+          <sortableElement
+            collection={0}
+            index={0}
+            key="item-0"
+            onDelete={undefined}
+            value="task1"
+          >
+            <Component
+              onDelete={undefined}
+              value="task1"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task1
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={1}
+            key="item-1"
+            onDelete={undefined}
+            value="task2"
+          >
+            <Component
+              onDelete={undefined}
+              value="task2"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task2
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={2}
+            key="item-2"
+            onDelete={undefined}
+            value="task3"
+          >
+            <Component
+              onDelete={undefined}
+              value="task3"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task3
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={3}
+            key="item-3"
+            onDelete={undefined}
+            value="task4"
+          >
+            <Component
+              onDelete={undefined}
+              value="task4"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task4
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+          <sortableElement
+            collection={0}
+            index={4}
+            key="item-4"
+            onDelete={undefined}
+            value="task5"
+          >
+            <Component
+              onDelete={undefined}
+              value="task5"
+            >
+              <div
+                className="light-text sortable-list-item"
+              >
+                <span>
+                  task5
+                </span>
+                <i
+                  className="button fa fa-trash-o"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "lineHeight": "24px",
+                    }
+                  }
+                />
+              </div>
+            </Component>
+          </sortableElement>
+        </div>
+      </Component>
+    </sortableList>
+  </div>
+</SortableListComponent>
+`;
+
+exports[`SortableListComponent component should render dynamically should render NO list items 1`] = `
+<SortableListComponent
+  items={Array []}
+>
+  <div
+    className="sortable-list"
+  >
+    <sortableList
+      axis="y"
+      distance={0}
+      getHelperDimensions={[Function]}
+      hideSortableGhost={true}
+      items={Array []}
+      lockOffset="50%"
+      lockToContainerEdges={false}
+      onDelete={undefined}
+      onSortEnd={undefined}
+      pressDelay={0}
+      pressThreshold={5}
+      shouldCancelStart={[Function]}
+      transitionDuration={300}
+      useWindowAsScrollContainer={false}
+    >
+      <Component
+        items={Array []}
+        onDelete={undefined}
+      >
+        <div />
+      </Component>
+    </sortableList>
+  </div>
+</SortableListComponent>
+`;

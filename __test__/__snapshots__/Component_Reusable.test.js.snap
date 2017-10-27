@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert component should render dynamically should NOT render Alert 1`] = `""`;
+
+exports[`Alert component should render dynamically should render Error Alert as expected 1`] = `
+<div
+  className="alert"
+  style={
+    Object {
+      "backgroundColor": "#fff7f7",
+      "border": "1px solid #d98484",
+      "borderRadius": "3px",
+      "bottom": "25%",
+      "color": "#d98484",
+      "display": "flex",
+      "fontSize": "70%",
+      "justifyContent": "space-between",
+      "maxWidth": "80%",
+      "padding": "8px 15px",
+      "position": "fixed",
+      "right": "5%",
+      "width": "500px",
+      "zIndex": "2",
+    }
+  }
+>
+  <span>
+    error
+  </span>
+  <i
+    className="button fa fa-times"
+    style={
+      Object {
+        "lineHeight": "21px",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Alert component should render dynamically should render Success Alert as expected 1`] = `
+<div
+  className="alert"
+  style={
+    Object {
+      "backgroundColor": "#f7fffb",
+      "border": "1px solid #84d9a7",
+      "borderRadius": "3px",
+      "bottom": "25%",
+      "color": "#84d9a7",
+      "display": "flex",
+      "fontSize": "70%",
+      "justifyContent": "space-between",
+      "maxWidth": "80%",
+      "padding": "8px 15px",
+      "position": "fixed",
+      "right": "5%",
+      "width": "500px",
+      "zIndex": "2",
+    }
+  }
+>
+  <span>
+    success
+  </span>
+  <i
+    className="button fa fa-times"
+    style={
+      Object {
+        "lineHeight": "21px",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Button component should render dynamically should disable Button 1`] = `
+<div
+  className="button disabled"
+  onClick={null}
+  style={
+    Object {
+      "borderRadius": "5px",
+      "display": "inline-block",
+      "padding": "8px 15px",
+    }
+  }
+>
+  button
+</div>
+`;
+
+exports[`Button component should render dynamically should render Button as expected 1`] = `
+<div
+  className="button "
+  style={
+    Object {
+      "borderRadius": "5px",
+      "display": "inline-block",
+      "padding": "8px 15px",
+    }
+  }
+>
+  button
+</div>
+`;

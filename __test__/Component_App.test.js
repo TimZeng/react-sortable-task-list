@@ -7,7 +7,6 @@ import toJson from 'enzyme-to-json';
 import { App } from '../src/containers/app';
 
 describe('App component should render dynamically', () => {
-  let wrapper, taskLen, alertCount, newTaskCount
   const fetchTasks = () => {};
   const global = { changeMade: false, tasksFetched: true };
   const newTask = 'new task for testing';
